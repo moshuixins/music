@@ -9,7 +9,8 @@ fs.readdir(path.join(__dirname, './resources'), (err, files) => {
     } else {
         files.forEach(file => {
             list.push({
-                name: file,
+                name: path.basename(file, path.extname(file)),
+                type: path.extname(file).slice(1),
             });
         });
         fs.writeFile(path.join(__dirname, './resourcesJson/music.json'), JSON.stringify(list), (err) => {
